@@ -1,5 +1,6 @@
 /*
  * Nurul Al Hadi
+ * Eka Chandra Septiana
  *
  *
  */
@@ -407,6 +408,152 @@ glutSolidDodecahedron();
 glPopMatrix();
 }
 
+//bunga
+void bungamerah()
+{
+     GLUquadricObj *pObj;
+    pObj =gluNewQuadric();
+    gluQuadricNormals(pObj, GLU_SMOOTH);
+   
+   glColor3f(1,0,0);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4, 0, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+   glColor3f(1,0,0);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-5, 0, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+    glColor3f(1,0,0);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4.5, 1, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+   glColor3f(0.3,0.2,0);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4, -5, 0);
+  glRotatef(270,1,0,0);
+   gluCylinder(pObj, 0.35, 0.35, 5, 100, 15); //ptr, rbase, rtop, height, slices, stacks
+   glPopMatrix();
+     }
+void bungaungu()
+{
+     GLUquadricObj *pObj;
+    pObj =gluNewQuadric();
+    gluQuadricNormals(pObj, GLU_SMOOTH);
+   
+   glColor3f(0.2745,0.0039,0.2745);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4, 0, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+   glColor3f(0.2745,0.0039,0.2745);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-5, 0, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+    glColor3f(0.2745,0.0039,0.2745);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4.5, 1, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+   glColor3f(0.3,0.2,0);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4, -5, 0);
+  glRotatef(270,1,0,0);
+   gluCylinder(pObj, 0.35, 0.35, 5, 100, 15); //ptr, rbase, rtop, height, slices, stacks
+   glPopMatrix();
+     }
+
+void bungapink()
+{
+     GLUquadricObj *pObj;
+    pObj =gluNewQuadric();
+    gluQuadricNormals(pObj, GLU_SMOOTH);
+   
+   glColor3f(0.976,0.604,0.961);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4, 0, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+   glColor3f(0.976,0.604,0.961);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-5, 0, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+    glColor3f(0.976,0.604,0.961);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4.5, 1, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+   glColor3f(0.3,0.2,0);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4, -5, 0);
+  glRotatef(270,1,0,0);
+   gluCylinder(pObj, 0.35, 0.35, 5, 100, 15); //ptr, rbase, rtop, height, slices, stacks
+   glPopMatrix();
+     }
+
+//bunga kuning
+void bungakuning()
+{
+     GLUquadricObj *pObj;
+    pObj =gluNewQuadric();
+    gluQuadricNormals(pObj, GLU_SMOOTH);
+   
+   glColor3f(0.929,0.988,0.008);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4, 0, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+   glColor3f(0.929,0.988,0.008);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-5, 0, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+    glColor3f(0.929,0.988,0.008);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4.5, 1, 0);
+   glutSolidSphere(1.5,100,100);
+   glPopMatrix();
+   
+   glColor3f(0.3,0.2,0);
+   glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   glPushMatrix();  
+   glTranslatef(-4, -5, 0);
+  glRotatef(270,1,0,0);
+   gluCylinder(pObj, 0.35, 0.35, 5, 100, 15); //ptr, rbase, rtop, height, slices, stacks
+   glPopMatrix();
+     }
+
+
 void display(void){
 //    glutSwapBuffers();
 	glClearStencil(0); //clear the stencil buffer
@@ -541,6 +688,34 @@ glRotatef(-55,1,0,0);
 ranting();
 glPopMatrix();
 glPopMatrix();
+glPopMatrix();
+
+//bunga merah
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(10,10,21.5);
+bungamerah();
+glPopMatrix();
+
+//bunga ungu
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(18,10,21.5);
+bungaungu();
+glPopMatrix();
+
+//bunga ungu
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(18,10,15);
+bungapink();
+glPopMatrix();
+
+//bunga kuning
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(10,10,15);
+bungakuning();
 glPopMatrix();
 
     glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE); //disable the color mask
