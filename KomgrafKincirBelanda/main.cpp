@@ -20,9 +20,7 @@
 #include "vec3f.h"
 #endif
 
-/*
-komen coba commit
-*/
+
 
 static GLfloat spin, spin2 = 0.0;
 float angle = 0;
@@ -554,7 +552,94 @@ void bungakuning()
    gluCylinder(pObj, 0.35, 0.35, 5, 100, 15); //ptr, rbase, rtop, height, slices, stacks
    glPopMatrix();
      }
-
+//kincir angin
+void kincir()
+{
+     GLUquadricObj *pObj;
+    pObj =gluNewQuadric();
+    gluQuadricNormals(pObj, GLU_SMOOTH);
+ 
+    //tengah
+    glColor3f(255,204,102);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glPushMatrix();  
+    glTranslatef(-4, -5, 0);
+    glRotatef(270,1,0,0);
+    gluCylinder(pObj, 12, 10, 30, 100, 15); //ptr, rbase, rtop, height, slices, stacks
+    glPopMatrix();    
+    //atas
+    glColor3f(0.3,0.2,0);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glPushMatrix();  
+    glTranslatef(-4, 25, 0);
+    glRotatef(270,1,0,0);
+    glutSolidCone(12, 10, 25, 100);
+    glPopMatrix();    
+    
+    //baling1
+    
+    glPushMatrix();  
+    glColor3f(0.929,0.988,0.008);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glTranslatef(-15, 20, 0);
+    glRotatef(90,0,0,1);
+    glRotatef(45,0,1,0);
+    glScalef(7,0.3,0.5);
+    glutSolidCube(5);
+    glPopMatrix();   
+    
+    glPushMatrix();  
+    glColor3f(1,0,0);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glTranslatef(-15, 30, -10);
+    glRotatef(90,0,0,1);
+    glRotatef(45,0,1,0);
+    glScalef(5,1,3);
+    glutSolidCube(2);
+    glPopMatrix(); 
+    
+    glPushMatrix();  
+    glColor3f(1,0,0);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glTranslatef(-15, 30, 10);
+    glRotatef(90,0,0,1);
+    glRotatef(135,0,1,0);
+    glScalef(5,1,3);
+    glutSolidCube(2);
+    glPopMatrix();   
+      
+    
+    //baling2
+     glPushMatrix();  
+    glColor3f(0.929,0.988,0.008);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glTranslatef(-15, 20, 0);
+    glRotatef(90,0,0,1);
+    glRotatef(135,0,1,0);
+    glScalef(7,0.3,0.5);
+    glutSolidCube(5);
+    glPopMatrix();  
+     
+    glPushMatrix();  
+    glColor3f(1,0,0);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glTranslatef(-15, 10, -10);
+    glRotatef(90,0,0,1);
+    glRotatef(135,0,1,0);
+    glScalef(5,1,3);
+    glutSolidCube(2);
+    glPopMatrix();
+    
+    glPushMatrix();  
+    glColor3f(1,0,0);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glTranslatef(-15, 10, 10);
+    glRotatef(90,0,0,1);
+    glRotatef(45,0,1,0);
+    glScalef(5,1,3);
+    glutSolidCube(2);
+    glPopMatrix();      
+}
 
 void display(void){
 //    glutSwapBuffers();
@@ -715,10 +800,26 @@ glPopMatrix();
 
 //bunga kuning
 glPushMatrix();
+glRotatef(90,0,1,0);
 glScalef(1.8, 1.8, 1.8);
 glTranslatef(10,10,15);
 bungakuning();
 glPopMatrix();
+
+//kincir1
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(50,10,-30);
+kincir();
+glPopMatrix();
+
+//kincir2
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(50,10,50);
+kincir();
+glPopMatrix();
+
 
     glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE); //disable the color mask
 	glDepthMask(GL_FALSE); //disable the depth mask
