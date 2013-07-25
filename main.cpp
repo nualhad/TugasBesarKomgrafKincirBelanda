@@ -23,10 +23,22 @@
 /*
 komen coba commit
 */
-
 static GLfloat spin, spin2 = 0.0;
 float angle = 0;
 using namespace std;
+
+GLuint texture[2]; //array untuk texture
+
+//GLint slices = 16;
+//GLint stacks = 16;
+
+struct Images {
+	unsigned long sizeX;
+	unsigned long sizeY;
+	char *data;
+};
+typedef struct Images Images;
+
 
 float lastx, lasty;
 GLint stencilBits;
@@ -36,17 +48,7 @@ static int viewz = 200;
 
 float rot = 0;
 
-GLuint texture[2]; //array untuk texture
 
-//GLint slices = 16;
-//GLint stacks = 16;
-
-struct Images {
-unsigned long sizeX;
-unsigned long sizeY;
-char *data;
-};
-typedef struct Images Images;
 //class untuk terain 2D
 class Terrain {
 private:
@@ -236,6 +238,7 @@ glEnable(GL_LIGHTING);
 glEnable(GL_LIGHT0);
 glEnable(GL_NORMALIZE);
 glShadeModel(GL_SMOOTH);
+glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -664,9 +667,93 @@ void timer(int value)
 	glutTimerFunc(25,timer,0);
 }
 
+int ImageLoad(char *filename, Images *image) {
+	FILE *file;
+	unsigned long size; // ukuran image dalam bytes
+	unsigned long i; // standard counter.
+	unsigned short int plane; // number of planes in image
+
+	unsigned short int bpp; // jumlah bits per pixel
+	char temp; // temporary color storage for var warna sementara untuk memastikan filenya ada
 
 
+	if ((file = fopen(filename, "rb")) == NULL) {
+		printf("File Not Found : %s\n", filename);
+		return 0;
+	}
+	// mencari file header bmp
+	fseek(file, 18, SEEK_CUR);
+	// read the width
+	if ((i = fread(&image->sizeX, 4, 1, file)) != 1) {
+		printf("Error reading width from %s.\n", filename);
+		return 0;
+	}
+	//printf("Width of %s: %lu\n", filename, image->sizeX);
+	// membaca nilai height
+	if ((i = fread(&image->sizeY, 4, 1, file)) != 1) {
+		printf("Error reading height from %s.\n", filename);
+		return 0;
+	}
+	//printf("Height of %s: %lu\n", filename, image->sizeY);
+	//menghitung ukuran image(asumsi 24 bits or 3 bytes per pixel).
 
+	size = image->sizeX * image->sizeY * 3;
+	// read the planes
+	if ((fread(&plane, 2, 1, file)) != 1) {
+		printf("Error reading planes from %s.\n", filename);
+		return 0;
+	}
+	if (plane != 1) {
+		printf("Planes from %s is not 1: %u\n", filename, plane);
+		return 0;
+	}
+	// read the bitsperpixel
+	if ((i = fread(&bpp, 2, 1, file)) != 1) {
+		printf("Error reading bpp from %s.\n", filename);
+
+		return 0;
+	}
+	if (bpp != 24) {
+		printf("Bpp from %s is not 24: %u\n", filename, bpp);
+		return 0;
+	}
+	// seek past the rest of the bitmap header.
+	fseek(file, 24, SEEK_CUR);
+	// read the data.
+	image->data = (char *) malloc(size);
+	if (image->data == NULL) {
+		printf("Error allocating memory for color-corrected image data");
+		return 0;
+	}
+	if ((i = fread(image->data, size, 1, file)) != 1) {
+		printf("Error reading image data from %s.\n", filename);
+		return 0;
+	}
+	for (i = 0; i < size; i += 3) { // membalikan semuan nilai warna (gbr - > rgb)
+		temp = image->data[i];
+		image->data[i] = image->data[i + 2];
+		image->data[i + 2] = temp;
+	}
+	// we're done.
+	return 1;
+}
+
+
+//mengambil tekstur
+Images * loadTexture() {
+	Images *image1;
+	// alokasi memmory untuk tekstur
+	image1 = (Images *) malloc(sizeof(Images));
+	if (image1 == NULL) {
+		printf("Error allocating space for image");
+		exit(0);
+	}
+	//index.bmp is a 64x64 picture
+	if (!ImageLoad("index.bmp", image1)) {
+		exit(1);
+	}
+	return image1;
+}
 
 
 
@@ -874,9 +961,12 @@ x +=4;
 //tambahan manggil kincir angin
 
 //kincir1
+
 glPushMatrix();
+
 glScalef(1.8, 1.8, 1.8);
 glTranslatef(50,10,-30);
+glBindTexture(GL_TEXTURE_2D, texture[2]);
 kincir();
 glPopMatrix();
 
@@ -960,9 +1050,35 @@ initRendering();
 _terrainBukit = loadTerrain("TerrainBukit.bmp", 8);
 _terrainAir = loadTerrain("TerrainAir.bmp",0);
 
+Images *image1 = loadTexture();
+if (image1 == NULL) {
+		printf("Image was not returned from loadTexture\n");
+		exit(0);
+	}
+
+glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+
+	// Generate texture/ membuat texture
+	glGenTextures(2, texture);
+	glBindTexture(GL_TEXTURE_2D, texture[2]);
+
+
+		//menyesuaikan ukuran textur ketika image lebih besar dari texture
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //
+		//menyesuaikan ukuran textur ketika image lebih kecil dari texture
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //
+
+		glTexImage2D(GL_TEXTURE_2D, 0, 3, image1->sizeX, image1->sizeY, 0, GL_RGB,
+				GL_UNSIGNED_BYTE, image1->data);
+
+
+
+
+		//baris tekstur buatan #belang
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 }
-
 
 
 
