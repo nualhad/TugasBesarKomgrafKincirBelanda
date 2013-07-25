@@ -561,93 +561,125 @@ void bungakuning()
 
 //tambahan dari ekok
 //kincir angin
+static int putarx=90;
+static int putary=0;
 void kincir()
 {
      GLUquadricObj *pObj;
     pObj =gluNewQuadric();
     gluQuadricNormals(pObj, GLU_SMOOTH);
- 
-    //tengah
+
+    //badan
      glColor3f(0.7f,1.0f,0.7f);
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    glPushMatrix();  
+    glPushMatrix();
     glTranslatef(-4, -5, 0);
     glRotatef(270,1,0,0);
     gluCylinder(pObj, 12, 10, 30, 100, 15); //ptr, rbase, rtop, height, slices, stacks
-    glPopMatrix();    
+    glPopMatrix();
     //atas
     glColor3f(0.3,0.2,0);
     glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    glPushMatrix();  
+    glPushMatrix();
     glTranslatef(-4, 25, 0);
     glRotatef(270,1,0,0);
     glutSolidCone(12, 10, 25, 100);
-    glPopMatrix();    
-    
-    //baling1
-    
-    glPushMatrix();  
-    glColor3f(0.929,0.988,0.008);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    glTranslatef(-15, 20, 0);
-    glRotatef(90,0,0,1);
-    glRotatef(45,0,1,0);
-    glScalef(7,0.3,0.5);
-    glutSolidCube(5);
-    glPopMatrix();   
-    
-    glPushMatrix();  
-    glColor3f(1,0,0);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    glTranslatef(-15, 30, -10);
-    glRotatef(90,0,0,1);
-    glRotatef(45,0,1,0);
-    glScalef(5,1,3);
-    glutSolidCube(2);
-    glPopMatrix(); 
-    
-    glPushMatrix();  
-    glColor3f(1,0,0);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    glTranslatef(-15, 30, 10);
-    glRotatef(90,0,0,1);
-    glRotatef(135,0,1,0);
-    glScalef(5,1,3);
-    glutSolidCube(2);
-    glPopMatrix();   
-      
-    
-    //baling2
-     glPushMatrix();  
-    glColor3f(0.929,0.988,0.008);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    glTranslatef(-15, 20, 0);
-    glRotatef(90,0,0,1);
-    glRotatef(135,0,1,0);
-    glScalef(7,0.3,0.5);
-    glutSolidCube(5);
-    glPopMatrix();  
-     
-    glPushMatrix();  
-    glColor3f(1,0,0);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    glTranslatef(-15, 10, -10);
-    glRotatef(90,0,0,1);
-    glRotatef(135,0,1,0);
-    glScalef(5,1,3);
-    glutSolidCube(2);
     glPopMatrix();
-    
-    glPushMatrix();  
-    glColor3f(1,0,0);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
-    glTranslatef(-15, 10, 10);
-    glRotatef(90,0,0,1);
-    glRotatef(45,0,1,0);
-    glScalef(5,1,3);
-    glutSolidCube(2);
-    glPopMatrix();      
+
+
 }
+
+void baling()
+{
+	 glPushMatrix();
+	    glColor3f(0.929,0.988,0.008);
+	    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+	    glTranslatef(-15, 0, 0);
+	    glRotatef(90,0,0,1);
+	    glRotatef(45,0,1,0);
+	    glScalef(7,0.3,0.5);
+	    glutSolidCube(5);
+	    glPopMatrix();
+
+	    glPushMatrix();
+	    glColor3f(1,0,0);
+	    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+	    glTranslatef(-15, 0, 0);
+	    glRotatef(90,0,0,1);
+	    glRotatef(45,0,1,0);
+	    glScalef(5,1,3);
+	    glutSolidCube(2);
+	    glPopMatrix();
+
+	    glPushMatrix();
+	    glColor3f(1,0,0);
+	    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+	    glTranslatef(-15, 0, 0);
+	    glRotatef(90,0,0,1);
+	    glRotatef(135,0,1,0);
+	    glScalef(5,1,3);
+	    glutSolidCube(2);
+	    glPopMatrix();
+
+
+	    //baling2
+	        glPushMatrix();
+	       glColor3f(0.929,0.988,0.008);
+	       glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+	       glTranslatef(-15, 0, 0);
+	       glRotatef(90,0,0,1);
+	       glRotatef(135,0,1,0);
+	       glScalef(7,0.3,0.5);
+	       glutSolidCube(5);
+	       glPopMatrix();
+
+	       glPushMatrix();
+	       glColor3f(1,0,0);
+	       glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+	       glTranslatef(-15, 0, 0);
+	       glRotatef(90,0,0,1);
+	       glRotatef(135,0,1,0);
+	       glScalef(5,1,3);
+	       glutSolidCube(2);
+	       glPopMatrix();
+
+	       glPushMatrix();
+	       glColor3f(1,0,0);
+	       glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+	       glTranslatef(-15, 0, 0);
+	       glRotatef(90,0,0,1);
+	       glRotatef(45,0,1,0);
+	       glScalef(5,1,3);
+	       glutSolidCube(2);
+	       glPopMatrix();
+
+}
+
+void timer(int value)
+{
+	//tuliskan varibel yang berubah nilainya disini
+	putarx +=30;
+	putary +=4;
+	glutPostRedisplay();
+	glutTimerFunc(25,timer,0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -837,6 +869,8 @@ else
 glPopMatrix();
 x +=4;
 }
+
+
 //tambahan manggil kincir angin
 
 //kincir1
@@ -853,6 +887,21 @@ glTranslatef(50,10,50);
 kincir();
 glPopMatrix();
 
+
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(45,30,55);
+glRotated(putarx,1,0,0);
+baling();
+glPopMatrix();
+
+
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(40,30,-20);
+glRotated(putarx,1,0,0);
+baling();
+glPopMatrix();
 
     glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE); //disable the color mask
 glDepthMask(GL_FALSE); //disable the depth mask
@@ -1024,6 +1073,7 @@ init();
 glutDisplayFunc(display);
 glutIdleFunc(display);
 glutReshapeFunc(reshape);
+glutTimerFunc(500, timer, 0);
 
 glutKeyboardFunc (keyboard);
 glutSpecialFunc(keyboard);
