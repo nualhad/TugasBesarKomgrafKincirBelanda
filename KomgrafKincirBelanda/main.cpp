@@ -225,127 +225,6 @@ delete _terrainBukit;
 delete _terrainAir;
 }
 
-/*
-
-int ImageLoad(char *filename, Images *image) {
-	FILE *file;
-	unsigned long size;
-	unsigned long i;
-	unsigned short int plane;
-
-	unsigned short int bpp;
-	char temp;
-
-
-	if ((file = fopen(filename, "rb")) == NULL) {
-		printf("File Not Found : %s\n", filename);
-		return 0;
-	}
-
-	fseek(file, 18, SEEK_CUR);
-
-	if ((i = fread(&image->sizeX, 4, 1, file)) != 1) {
-		printf("Error reading width from %s.\n", filename);
-		return 0;
-	}
-
-	if ((i = fread(&image->sizeY, 4, 1, file)) != 1) {
-		printf("Error reading height from %s.\n", filename);
-		return 0;
-	}
-
-	size = image->sizeX * image->sizeY * 3;
-	// read the planes
-	if ((fread(&plane, 2, 1, file)) != 1) {
-		printf("Error reading planes from %s.\n", filename);
-		return 0;
-	}
-	if (plane != 1) {
-		printf("Planes from %s is not 1: %u\n", filename, plane);
-		return 0;
-	}
-	// read the bitsperpixel
-	if ((i = fread(&bpp, 2, 1, file)) != 1) {
-		printf("Error reading bpp from %s.\n", filename);
-
-		return 0;
-	}
-	if (bpp != 24) {
-		printf("Bpp from %s is not 24: %u\n", filename, bpp);
-		return 0;
-	}
-	// seek past the rest of the bitmap header.
-	fseek(file, 24, SEEK_CUR);
-	// read the data.
-	image->data = (char *) malloc(size);
-	if (image->data == NULL) {
-		printf("Error allocating memory for color-corrected image data");
-		return 0;
-	}
-	if ((i = fread(image->data, size, 1, file)) != 1) {
-		printf("Error reading image data from %s.\n", filename);
-		return 0;
-	}
-	for (i = 0; i < size; i += 3) {
-		temp = image->data[i];
-		image->data[i] = image->data[i + 2];
-		image->data[i + 2] = temp;
-	}
-	//
-	return 1;
-}
-
-
-
-
-
-Images * loadTexture() {
-	Images *image1;
-
-	image1 = (Images *) malloc(sizeof(Images));
-	if (image1 == NULL) {
-		printf("Error allocating space for image");
-		exit(0);
-	}
-
-	if (!ImageLoad("grass.bmp", image1)) {
-		exit(1);
-	}
-	return image1;
-}
-
-
-Images * loadTextureSatu() {
-	Images *image1;
-
-	image1 = (Images *) malloc(sizeof(Images));
-	if (image1 == NULL) {
-		printf("Error allocating space for image");
-		exit(0);
-	}
-
-	if (!ImageLoad("balon.bmp", image1)) {
-		exit(1);
-	}
-	return image1;
-}
-
-Images * loadTextureDua() {
-	Images *image1;
-	// alokasi memmory untuk tekstur
-	image1 = (Images *) malloc(sizeof(Images));
-	if (image1 == NULL) {
-		printf("Error allocating space for image");
-		exit(0);
-	}
-
-	if (!ImageLoad("kotak.bmp", image1)) {
-		exit(1);
-	}
-	return image1;
-}
-*/
-
 
 void initRendering() {
 	glEnable(GL_DEPTH_TEST);
@@ -492,11 +371,7 @@ const GLfloat mat_diffuse[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 const GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 const GLfloat high_shininess[] = { 100.0f };
 
-/*
-unsigned int texture_balon;
-unsigned int texture_kotak;
-unsigned int LoadTextureFromBmpFile(char *filename);
-*/
+
 
 void pohon(void){
 //batang
@@ -726,67 +601,6 @@ _terrainBukit = loadTerrain("TerrainBukit.bmp", 8);
 _terrainAir = loadTerrain("TerrainAir.bmp",0);
 
 
-
-
-
-
-/*
-Images *image1 = loadTexture();
-Images *image2 = loadTextureSatu();
-Images *image3 = loadTextureDua();
-
-if (image1 == NULL) {
-		printf("Image was not returned from loadTexture\n");
-		exit(0);
-	}
-
-glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-
-	// Generate texture/ membuat texture
-	glGenTextures(2, texture);
-
-------------tekstur balon---------------
-
-	//binding texture untuk membuat texture 2D
-	glBindTexture(GL_TEXTURE_2D, texture[1]);
-
-
-    glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);
-
-	//menyesuaikan ukuran textur ketika image lebih besar dari texture
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); //
-	//menyesuaikan ukuran textur ketika image lebih kecil dari texture
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); //
-
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, image2->sizeX, image2->sizeY, 0, GL_RGB,
-			GL_UNSIGNED_BYTE, image2->data);
-*/
-
-
-/*
-------------tekstur kotak---------------
-
-	//binding texture untuk membuat texture 2D
-	glBindTexture(GL_TEXTURE_2D, texture[2]);
-
-
-	//menyesuaikan ukuran textur ketika image lebih besar dari texture
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //
-	//menyesuaikan ukuran textur ketika image lebih kecil dari texture
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //
-
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, image3->sizeX, image3->sizeY, 0, GL_RGB,
-			GL_UNSIGNED_BYTE, image3->data);
-
-
-
-
-	//baris tekstur buatan #belang
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
-
-*/
 }
 
 
