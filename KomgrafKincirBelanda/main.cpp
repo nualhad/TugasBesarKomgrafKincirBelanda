@@ -20,7 +20,9 @@
 #include "vec3f.h"
 #endif
 
-
+/*
+komen coba commit
+*/
 
 static GLfloat spin, spin2 = 0.0;
 float angle = 0;
