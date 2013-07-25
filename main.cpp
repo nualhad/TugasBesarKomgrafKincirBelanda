@@ -574,7 +574,7 @@ void kincir()
 
     //badan
      glColor3f(0.7f,1.0f,0.7f);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+   // glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
     glPushMatrix();
     glTranslatef(-4, -5, 0);
     glRotatef(270,1,0,0);
@@ -582,7 +582,7 @@ void kincir()
     glPopMatrix();
     //atas
     glColor3f(0.3,0.2,0);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    //glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
     glPushMatrix();
     glTranslatef(-4, 25, 0);
     glRotatef(270,1,0,0);
@@ -749,13 +749,38 @@ Images * loadTexture() {
 		exit(0);
 	}
 	//index.bmp is a 64x64 picture
-	if (!ImageLoad("index.bmp", image1)) {
+	if (!ImageLoad("TextureBata.bmp", image1)) {
 		exit(1);
 	}
 	return image1;
 }
 
+void awan()
+        {
 
+         glPushMatrix();
+         glColor3f(1, 1, 1);
+          glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+         glutSolidSphere(10, 50, 50);
+         glPopMatrix();
+         glPushMatrix();
+         glTranslatef(10,0,1);
+         glutSolidSphere(5, 50, 50);
+         glPopMatrix();
+         glPushMatrix();
+         glTranslatef(-2,6,-2);
+         glutSolidSphere(7, 50, 50);
+         glPopMatrix();
+         glPushMatrix();
+         glTranslatef(-10,-3,0);
+         glutSolidSphere(7, 50, 50);
+         glPopMatrix();
+         glPushMatrix();
+         glTranslatef(6,-2,2);
+         glutSolidSphere(7, 50, 50);
+         glPopMatrix();
+
+        }
 
 
 
@@ -786,7 +811,7 @@ gluLookAt(viewx, viewy, viewz, 0.0, 10.0, 0.0, 0.0, 1.0, 0.0);
     glPopMatrix();
     glPushMatrix();
 
-glBindTexture(GL_TEXTURE_2D, texture[0]);
+//glBindTexture(GL_TEXTURE_2D, texture[2]);
 gambarTanah(_terrainBukit, 0.3f, 0.9f, 0.0f);
 glPopMatrix();
 
@@ -958,6 +983,39 @@ x +=4;
 }
 
 
+
+
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(10,65,-30);
+awan();
+glPopMatrix();
+
+//awan2
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glTranslatef(50,65,-30);
+awan();
+glPopMatrix();
+
+//awan3
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glRotated(45,1,0,0);
+glTranslatef(-50,65,-30);
+awan();
+glPopMatrix();
+
+//awan4
+glPushMatrix();
+glScalef(1.8, 1.8, 1.8);
+glRotated(45,1,0,0);
+glTranslatef(30,65,-30);
+awan();
+glPopMatrix();
+
+
+
 //tambahan manggil kincir angin
 
 //kincir1
@@ -985,13 +1043,14 @@ glRotated(putarx,1,0,0);
 baling();
 glPopMatrix();
 
-
+//baling-baling
 glPushMatrix();
 glScalef(1.8, 1.8, 1.8);
 glTranslatef(40,30,-20);
 glRotated(putarx,1,0,0);
 baling();
 glPopMatrix();
+
 
     glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE); //disable the color mask
 glDepthMask(GL_FALSE); //disable the depth mask
@@ -1061,7 +1120,7 @@ glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	// Generate texture/ membuat texture
 	glGenTextures(2, texture);
-	glBindTexture(GL_TEXTURE_2D, texture[2]);
+	glBindTexture(GL_TEXTURE_2D, texture[0]);
 
 
 		//menyesuaikan ukuran textur ketika image lebih besar dari texture
@@ -1071,6 +1130,7 @@ glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 		glTexImage2D(GL_TEXTURE_2D, 0, 3, image1->sizeX, image1->sizeY, 0, GL_RGB,
 				GL_UNSIGNED_BYTE, image1->data);
+
 
 
 
